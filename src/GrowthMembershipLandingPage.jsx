@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { Menu, X, ArrowRight, CheckCircle2, Play, Star, BarChart3, Briefcase, Layers3, MessageSquare, ShieldCheck, ChevronDown } from "lucide-react";
-import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
 export default function GrowthMembershipLandingPage() {
-  const stripe = useStripe();
-  const elements = useElements();
 
   const lifetimePass = {
     name: "WorkingBetter Lifetime Pass",
@@ -83,30 +80,6 @@ export default function GrowthMembershipLandingPage() {
       alert("Enter a coupon code");
     } else {
       alert("Invalid coupon code. Try: WORKINGBETTER");
-    }
-  };
-
-  const handleStripePayment = async () => {
-    if (!stripe || !elements) {
-      alert("Stripe is not ready yet");
-      return;
-    }
-
-    const cardElement = elements.getElement(CardElement);
-    const finalAmount = (cartSubtotal || 150) - couponDiscount;
-
-    try {
-      const { token } = await stripe.createToken(cardElement);
-      
-      if (token) {
-        alert(`✅ Payment of $${finalAmount.toFixed(2)} processed successfully!\n\nOrder confirmed for:\n${checkoutData.email}\n\nThank you for your purchase!`);
-        setCurrentPage("home");
-        setCartItems([]);
-        setCouponDiscount(0);
-        setCouponCode("");
-      }
-    } catch (error) {
-      alert("Payment failed: " + error.message);
     }
   };
 
@@ -653,28 +626,6 @@ export default function GrowthMembershipLandingPage() {
           </div>
 
 
-
-          <div>
-            <h2 className="text-2xl font-semibold">Payment</h2>
-            <div className="mt-4">
-              <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
-                <CardElement 
-                  options={{
-                    style: {
-                      base: {
-                        fontSize: '16px',
-                        color: '#ffffff',
-                        '::placeholder': {
-                          color: '#ffffff88',
-                        },
-                      },
-                    },
-                  }}
-                />
-              </div>
-              <p className="mt-3 text-sm text-white/50">No cardholder name needed for Stripe Checkout tokens.</p>
-            </div>
-          </div>
 
           <div className="mt-8">
             <h2 className="text-2xl font-semibold">Coupon Code</h2>
