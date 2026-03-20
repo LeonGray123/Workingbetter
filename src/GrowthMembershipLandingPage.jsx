@@ -77,6 +77,12 @@ export default function GrowthMembershipLandingPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const goToMyAccount = () => {
+    setCurrentPage("my-account");
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handleCheckoutInput = (field, value) => {
     setCheckoutData((prev) => ({ ...prev, [field]: value }));
   };
@@ -757,6 +763,87 @@ export default function GrowthMembershipLandingPage() {
     </section>
   );
 
+  const renderMyAccount = () => (
+    <section className="mx-auto max-w-4xl px-6 py-16 md:py-20">
+      <div className="mb-8">
+        <button onClick={goHome} className="mb-4 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10">
+          ← Back to home
+        </button>
+        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">My Account</h1>
+      </div>
+
+      <div className="grid gap-8 md:grid-cols-2">
+        <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6">
+          <h2 className="text-2xl font-semibold mb-6">Account Information</h2>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-white/70 mb-2">Email Address</label>
+              <div className="text-white">{checkoutData.email || "Not provided"}</div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-white/70 mb-2">Account Status</label>
+              <div className="inline-flex items-center gap-2 rounded-full bg-green-500/10 px-3 py-1 text-sm text-green-400">
+                <div className="h-2 w-2 rounded-full bg-green-400"></div>
+                Active
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6">
+          <h2 className="text-2xl font-semibold mb-6">Order History</h2>
+          {cartItems.length > 0 ? (
+            <div className="space-y-4">
+              {cartItems.map((item, index) => (
+                <div key={index} className="rounded-2xl border border-white/10 bg-black/30 p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="font-medium">{item.name}</div>
+                      <div className="text-sm text-white/55">Quantity: {item.quantity}</div>
+                    </div>
+                    <div className="text-cyan-400 font-semibold">${item.price * item.quantity}</div>
+                  </div>
+                  <div className="mt-2 text-xs text-white/50">Purchased recently</div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8 text-white/50">
+              <p>No orders yet</p>
+              <button onClick={handleAddToCart} className="mt-4 inline-flex rounded-full bg-gradient-to-br from-cyan-400 to-indigo-500 px-4 py-2 text-sm font-semibold text-black">
+                Get Started
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 md:col-span-2">
+          <h2 className="text-2xl font-semibold mb-6">Account Settings</h2>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-black/30">
+              <div>
+                <div className="font-medium">Email Notifications</div>
+                <div className="text-sm text-white/55">Receive updates about your account</div>
+              </div>
+              <div className="relative inline-flex h-6 w-11 items-center rounded-full bg-white/10">
+                <div className="h-4 w-4 rounded-full bg-cyan-400 translate-x-6"></div>
+              </div>
+            </div>
+            <div className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-black/30">
+              <div>
+                <div className="font-medium">Marketing Communications</div>
+                <div className="text-sm text-white/55">Receive tips and offers from WorkingBetter</div>
+              </div>
+              <div className="relative inline-flex h-6 w-11 items-center rounded-full bg-white/10">
+                <div className="h-4 w-4 rounded-full bg-cyan-400 translate-x-1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+
   return (
     <div className="min-h-screen bg-neutral-950 text-white font-[Inter]">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/80 backdrop-blur">
@@ -824,6 +911,7 @@ export default function GrowthMembershipLandingPage() {
                   {item.label}
                 </button>
               ))}
+              <button onClick={goToMyAccount} className="border-b border-white/5 py-3 text-left">My Account</button>
               <button onClick={goToCart} className="border-b border-white/5 py-3 text-left">Cart ({cartCount})</button>
               <button onClick={goToCheckout} className="border-b border-white/5 py-3 text-left">Checkout</button>
               <button
@@ -837,7 +925,7 @@ export default function GrowthMembershipLandingPage() {
         )}
       </header>
 
-      <main id="top">{currentPage === "cart" ? renderCart() : currentPage === "checkout" ? renderCheckout() : currentPage === "privacy" ? renderPrivacy() : currentPage === "terms" ? renderTerms() : renderHome()}</main>
+      <main id="top">{currentPage === "cart" ? renderCart() : currentPage === "checkout" ? renderCheckout() : currentPage === "privacy" ? renderPrivacy() : currentPage === "terms" ? renderTerms() : currentPage === "my-account" ? renderMyAccount() : renderHome()}</main>
 
       <footer className="border-t border-white/10 bg-black/60">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-2">
@@ -877,6 +965,7 @@ export default function GrowthMembershipLandingPage() {
             <div>
               <div className="text-sm font-medium text-white">Company</div>
               <div className="mt-4 space-y-3 text-sm text-white/55">
+                <div><button onClick={goToMyAccount} className="hover:text-white">My Account</button></div>
                 <div><button onClick={goToCart} className="hover:text-white">Cart</button></div>
                 <div><button onClick={goToCheckout} className="hover:text-white">Checkout</button></div>
                 <div><button onClick={goToPrivacy} className="hover:text-white">Privacy Policy</button></div>
