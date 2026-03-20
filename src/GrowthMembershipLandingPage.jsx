@@ -101,7 +101,7 @@ export default function GrowthMembershipLandingPage() {
 
 
   const handleStripeCheckoutRedirect = () => {
-    window.location.href = "https://buy.stripe.com/test_aFadR8gX48kK4LterNf3a00";
+    window.location.href = "https://buy.stripe.com/cNiaEWgQ664b8Hg2Wd5J601";
   };
 
   const scrollToSection = (selector) => {
