@@ -277,15 +277,6 @@ export default function GrowthMembershipLandingPage() {
                   </div>
                 </div>
 
-                <div className="mt-5 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5">
-                    <Play className="h-4 w-4 text-cyan-400" />
-                  </div>
-                  <div>
-                    <div className="font-medium text-white">Quick intro walkthrough</div>
-                    <div className="text-sm text-white/50">Perfect spot for a future founder video or sales intro.</div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
