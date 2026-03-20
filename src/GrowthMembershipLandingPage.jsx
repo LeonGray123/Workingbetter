@@ -16,6 +16,10 @@ export default function GrowthMembershipLandingPage() {
   const [checkoutData, setCheckoutData] = useState({
     email: "",
   });
+  const [accountSettings, setAccountSettings] = useState({
+    emailNotifications: true,
+    marketingCommunications: false,
+  });
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const cartSubtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -85,6 +89,13 @@ export default function GrowthMembershipLandingPage() {
 
   const handleCheckoutInput = (field, value) => {
     setCheckoutData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const toggleAccountSetting = (setting) => {
+    setAccountSettings((prev) => ({
+      ...prev,
+      [setting]: !prev[setting],
+    }));
   };
 
 
@@ -825,18 +836,36 @@ export default function GrowthMembershipLandingPage() {
                 <div className="font-medium">Email Notifications</div>
                 <div className="text-sm text-white/55">Receive updates about your account</div>
               </div>
-              <div className="relative inline-flex h-6 w-11 items-center rounded-full bg-white/10">
-                <div className="h-4 w-4 rounded-full bg-cyan-400 translate-x-6"></div>
-              </div>
+              <button
+                onClick={() => toggleAccountSetting('emailNotifications')}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  accountSettings.emailNotifications ? 'bg-cyan-400' : 'bg-white/10'
+                }`}
+              >
+                <div
+                  className={`h-4 w-4 rounded-full bg-white transition-transform ${
+                    accountSettings.emailNotifications ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                ></div>
+              </button>
             </div>
             <div className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-black/30">
               <div>
                 <div className="font-medium">Marketing Communications</div>
                 <div className="text-sm text-white/55">Receive tips and offers from WorkingBetter</div>
               </div>
-              <div className="relative inline-flex h-6 w-11 items-center rounded-full bg-white/10">
-                <div className="h-4 w-4 rounded-full bg-cyan-400 translate-x-1"></div>
-              </div>
+              <button
+                onClick={() => toggleAccountSetting('marketingCommunications')}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                  accountSettings.marketingCommunications ? 'bg-cyan-400' : 'bg-white/10'
+                }`}
+              >
+                <div
+                  className={`h-4 w-4 rounded-full bg-white transition-transform ${
+                    accountSettings.marketingCommunications ? 'translate-x-6' : 'translate-x-1'
+                  }`}
+                ></div>
+              </button>
             </div>
           </div>
         </div>
