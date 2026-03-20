@@ -81,11 +81,17 @@ export default function GrowthMembershipLandingPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const goToMyAccount = () => {
-    setCurrentPage("my-account");
+  const goToContact = () => {
+    setCurrentPage("contact");
     setMenuOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }; // My Account navigation
+  };
+
+  const goToRefund = () => {
+    setCurrentPage("refund");
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const handleCheckoutInput = (field, value) => {
     setCheckoutData((prev) => ({ ...prev, [field]: value }));
@@ -229,31 +235,46 @@ export default function GrowthMembershipLandingPage() {
               Premium strategy, systems, and growth support
             </div>
             <h1 className="max-w-4xl text-5xl font-semibold tracking-tight sm:text-6xl md:text-7xl">
-              Build a business that looks better, runs better, and grows better.
+              Work smarter and get more done with WorkingBetter
             </h1>
             <p className="mt-6 max-w-2xl text-xl leading-9 text-white/70">
-              WorkingBetter helps founders and service brands improve positioning, simplify operations, and create a more premium customer journey from first impression to final conversion.
+              Lifetime access to a proven productivity system for a one-time payment
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <button
-                onClick={handleAddToCart}
+                onClick={handleStripeCheckoutRedirect}
                 className="inline-flex items-center gap-2 rounded-full bg-gradient-to-br from-cyan-400 to-indigo-500 px-7 py-3.5 text-base font-semibold text-black shadow-lg shadow-indigo-500/20 transition-all duration-300 hover:scale-[1.04] hover:shadow-indigo-500/30"
               >
-                Get Started
+                Buy now – $150
                 <ArrowRight className="h-4 w-4" />
               </button>
               <button
                 onClick={() => scrollToSection("#services")}
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-base font-semibold text-white transition hover:bg-white/10"
               >
-                Explore Services
+                Learn more
                 <ChevronDown className="h-4 w-4" />
               </button>
             </div>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm text-white/70">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4 text-cyan-400" />
+                Secure payment powered by Stripe
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-cyan-400" />
+                7-day refund guarantee
+              </div>
+              <div className="flex items-center gap-2">
+                <ArrowRight className="h-4 w-4 text-cyan-400" />
+                Instant access after purchase
+              </div>
+            </div>
             <div className="mt-8 flex flex-wrap items-center gap-6 text-sm text-white/55">
-              <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-cyan-400" />Premium positioning</div>
-              <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-cyan-400" />Clearer operations</div>
-              <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-cyan-400" />Stronger conversions</div>
+              <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-cyan-400" />Save hours every week</div>
+              <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-cyan-400" />Clear system for better focus and output</div>
+              <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-cyan-400" />Lifetime updates included</div>
+              <div className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-cyan-400" />Instant access after purchase</div>
             </div>
           </div>
 
@@ -265,8 +286,8 @@ export default function GrowthMembershipLandingPage() {
                     <p className="text-sm text-white/45">Featured Offer</p>
                     <h2 className="mt-1 text-3xl font-semibold">WorkingBetter Growth System</h2>
                   </div>
-                  <div className="rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-2 text-sm text-cyan-400">
-                    Limited spots
+                  <div className="rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-2 text-sm text-orange-400">
+                    Launch price - ends soon
                   </div>
                 </div>
 
@@ -286,10 +307,10 @@ export default function GrowthMembershipLandingPage() {
                       <div className="mt-1 text-4xl font-semibold">$150</div>
                     </div>
                     <button
-                      onClick={handleAddToCart}
+                      onClick={handleStripeCheckoutRedirect}
                       className="inline-flex items-center gap-2 rounded-full bg-gradient-to-br from-cyan-400 to-indigo-500 px-5 py-3 text-base font-semibold text-black shadow-lg shadow-indigo-500/20"
                     >
-                      Get Started
+                      Buy now – $150
                     </button>
                   </div>
                 </div>
@@ -691,6 +712,7 @@ export default function GrowthMembershipLandingPage() {
           <p>We may collect information about you in a variety of ways. The information we may collect on the site includes:</p>
           <ul className="mt-2 ml-4 list-disc space-y-2">
             <li><strong>Personal Data:</strong> Name, email address, and other information provided during checkout or account creation.</li>
+            <li><strong>Payment Data:</strong> Payment information is collected and processed securely through Stripe. We do not store payment card details on our servers.</li>
             <li><strong>Usage Data:</strong> Information about how you interact with our website, including pages visited and time spent.</li>
             <li><strong>Device Information:</strong> IP address, browser type, operating system, and other technical information.</li>
           </ul>
@@ -736,23 +758,36 @@ export default function GrowthMembershipLandingPage() {
           <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
         </section>
         <section>
-          <h2 className="mb-3 text-2xl font-semibold text-white">2. Use License</h2>
-          <p>Permission is granted to temporarily download one copy of the materials (information or software) on WorkingBetter for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
-          <ul className="mt-2 ml-4 list-disc space-y-2">
-            <li>Modifying or copying the materials</li>
-            <li>Using the materials for any commercial purpose or for any public display</li>
-            <li>Attempting to decompile or reverse engineer any software contained on the site</li>
-            <li>Removing any copyright or other proprietary notations from the materials</li>
-            <li>Transferring the materials to another person or "mirroring" the materials on any other server</li>
-          </ul>
+          <h2 className="mb-3 text-2xl font-semibold text-white">2. Product Description</h2>
+          <p>WorkingBetter provides lifetime access to a proven productivity system designed to help you work smarter and get more done. This includes systems for better focus, improved output, and enhanced productivity through structured workflows and processes.</p>
         </section>
         <section>
-          <h2 className="mb-3 text-2xl font-semibold text-white">3. Disclaimer</h2>
+          <h2 className="mb-3 text-2xl font-semibold text-white">3. No Guarantees of Results</h2>
+          <p>While WorkingBetter provides tools and systems to improve productivity, we do not guarantee specific results. Individual outcomes may vary based on implementation, effort, and other factors. Success depends on your commitment to using the provided systems and methods.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">4. Usage Terms</h2>
+          <p>You are granted lifetime access to the WorkingBetter system for personal use. You may not share, distribute, or resell access to the system. The materials are provided for your personal productivity improvement only.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">5. Payment Processing</h2>
+          <p>All payments are processed securely through Stripe. We collect email addresses and payment information as necessary to process transactions and provide access to the WorkingBetter system.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">6. Data Protection</h2>
+          <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">7. Disclaimer</h2>
           <p><strong>Nothing on this site constitutes investment, tax, legal, or financial advice.</strong> All materials on WorkingBetter are provided on an "as-is" basis without warranties of any kind, either express or implied. We disclaim all warranties, including but not limited to warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
         </section>
         <section>
-          <h2 className="mb-3 text-2xl font-semibold text-white">4. Limitations of Liability</h2>
+          <h2 className="mb-3 text-2xl font-semibold text-white">8. Limitations of Liability</h2>
           <p>In no event shall WorkingBetter or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on WorkingBetter, even if we have been notified of the possibility of such damage.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">9. Refund Policy</h2>
+          <p>We offer a 7-day refund guarantee. If you're not satisfied with your purchase, contact us within 7 days for a full refund. See our Refund Policy page for complete details.</p>
         </section>
         <section>
           <h2 className="mb-3 text-2xl font-semibold text-white">5. Accuracy of Materials</h2>
@@ -873,6 +908,99 @@ export default function GrowthMembershipLandingPage() {
     </section>
   );
 
+  const renderContact = () => (
+    <section className="mx-auto max-w-4xl px-6 py-16 md:py-20">
+      <div className="mb-8">
+        <button onClick={goHome} className="mb-4 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10">
+          ← Back to home
+        </button>
+        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Contact Us</h1>
+      </div>
+      <div className="grid gap-8 md:grid-cols-2">
+        <div className="space-y-6 text-white/70">
+          <section>
+            <h2 className="mb-3 text-2xl font-semibold text-white">Get in Touch</h2>
+            <p className="mb-4">Have questions about WorkingBetter? We're here to help you work smarter and achieve better results.</p>
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-400/10 text-cyan-400">
+                  <MessageSquare className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="font-medium text-white">Email Support</div>
+                  <div className="text-sm">support@workingbetter.com</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-400/10 text-cyan-400">
+                  <CheckCircle2 className="h-5 w-5" />
+                </div>
+                <div>
+                  <div className="font-medium text-white">Response Time</div>
+                  <div className="text-sm">We typically respond within 24 hours</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6">
+          <h3 className="text-xl font-semibold mb-4">Send us a message</h3>
+          <form className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-white/70 mb-2">Name</label>
+              <input type="text" className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none placeholder:text-white/35" placeholder="Your name" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-white/70 mb-2">Email</label>
+              <input type="email" className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none placeholder:text-white/35" placeholder="your@email.com" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-white/70 mb-2">Message</label>
+              <textarea rows="4" className="w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none placeholder:text-white/35" placeholder="How can we help you?"></textarea>
+            </div>
+            <button type="submit" className="w-full rounded-full bg-gradient-to-br from-cyan-400 to-indigo-500 px-6 py-3 text-base font-semibold text-black shadow-lg shadow-indigo-500/20">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+
+  const renderRefund = () => (
+    <section className="mx-auto max-w-4xl px-6 py-16 md:py-20">
+      <div className="mb-8">
+        <button onClick={goHome} className="mb-4 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10">
+          ← Back to home
+        </button>
+        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Refund Policy</h1>
+      </div>
+      <div className="space-y-6 text-white/70">
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">7-Day Refund Guarantee</h2>
+          <p className="mb-4">We're confident that WorkingBetter will help you work smarter and achieve better results. If you're not completely satisfied with your purchase, we offer a full refund within 7 days of your purchase.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">How to Request a Refund</h2>
+          <p className="mb-4">To request a refund, simply contact our support team at <strong>support@workingbetter.com</strong> within 7 days of your purchase. Please include:</p>
+          <ul className="mt-2 ml-4 list-disc space-y-2">
+            <li>Your order number</li>
+            <li>The reason for your refund request</li>
+            <li>Any relevant details about your experience</li>
+          </ul>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">Refund Processing</h2>
+          <p className="mb-4">Once your refund request is approved, refunds will be processed within 5-7 business days and will appear on your original payment method. Please note that processing times may vary depending on your bank or payment provider.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">Contact Support</h2>
+          <p>If you have any questions about our refund policy or need assistance with your refund request, please don't hesitate to contact us at <strong>support@workingbetter.com</strong>. We're here to help!</p>
+        </section>
+      </div>
+    </section>
+  );
+
   return (
     <div className="min-h-screen bg-neutral-950 text-white font-[Inter]">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/80 backdrop-blur">
@@ -954,7 +1082,7 @@ export default function GrowthMembershipLandingPage() {
         )}
       </header>
 
-      <main id="top">{currentPage === "cart" ? renderCart() : currentPage === "checkout" ? renderCheckout() : currentPage === "privacy" ? renderPrivacy() : currentPage === "terms" ? renderTerms() : currentPage === "my-account" ? renderMyAccount() : renderHome()}</main>
+      <main id="top">{currentPage === "cart" ? renderCart() : currentPage === "checkout" ? renderCheckout() : currentPage === "privacy" ? renderPrivacy() : currentPage === "terms" ? renderTerms() : currentPage === "my-account" ? renderMyAccount() : currentPage === "contact" ? renderContact() : currentPage === "refund" ? renderRefund() : renderHome()}</main>
 
       <footer className="border-t border-white/10 bg-black/60">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-2">
@@ -979,6 +1107,10 @@ export default function GrowthMembershipLandingPage() {
             <p className="mt-3 max-w-md text-sm leading-7 text-white/55">
               Helping ambitious brands build better systems, sharper positioning, and stronger growth with a cleaner, more premium customer journey.
             </p>
+            <div className="mt-4 text-sm text-white/70">
+              <div className="font-medium">Contact</div>
+              <div>support@workingbetter.com</div>
+            </div>
           </div>
           <div className="grid gap-8 sm:grid-cols-2">
             <div>
@@ -994,6 +1126,8 @@ export default function GrowthMembershipLandingPage() {
             <div>
               <div className="text-sm font-medium text-white">Company</div>
               <div className="mt-4 space-y-3 text-sm text-white/55">
+                <div><button onClick={goToContact} className="hover:text-white">Contact</button></div>
+                <div><button onClick={goToRefund} className="hover:text-white">Refund Policy</button></div>
                 <div><button onClick={goToMyAccount} className="hover:text-white">My Account</button></div>
                 <div><button onClick={goToCart} className="hover:text-white">Cart</button></div>
                 <div><button onClick={goToCheckout} className="hover:text-white">Checkout</button></div>
