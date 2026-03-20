@@ -65,6 +65,18 @@ export default function GrowthMembershipLandingPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const goToPrivacy = () => {
+    setCurrentPage("privacy");
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const goToTerms = () => {
+    setCurrentPage("terms");
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const handleCheckoutInput = (field, value) => {
     setCheckoutData((prev) => ({ ...prev, [field]: value }));
   };
@@ -653,6 +665,107 @@ export default function GrowthMembershipLandingPage() {
     </section>
   );
 
+  const renderPrivacy = () => (
+    <section className="mx-auto max-w-4xl px-6 py-16 md:py-20">
+      <div className="mb-8">
+        <button onClick={goHome} className="mb-4 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10">
+          ← Back to home
+        </button>
+        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Privacy Policy</h1>
+      </div>
+      <div className="space-y-6 text-white/70">
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">1. Introduction</h2>
+          <p>WorkingBetter ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">2. Information We Collect</h2>
+          <p>We may collect information about you in a variety of ways. The information we may collect on the site includes:</p>
+          <ul className="mt-2 ml-4 list-disc space-y-2">
+            <li><strong>Personal Data:</strong> Name, email address, and other information provided during checkout or account creation.</li>
+            <li><strong>Usage Data:</strong> Information about how you interact with our website, including pages visited and time spent.</li>
+            <li><strong>Device Information:</strong> IP address, browser type, operating system, and other technical information.</li>
+          </ul>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">3. How We Use Your Information</h2>
+          <p>We use the information collected for purposes including:</p>
+          <ul className="mt-2 ml-4 list-disc space-y-2">
+            <li>Processing transactions and sending related confirmations</li>
+            <li>Providing customer support and responding to inquiries</li>
+            <li>Improving our website and services</li>
+            <li>Sending promotional materials (with your consent)</li>
+            <li>Complying with legal obligations</li>
+          </ul>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">4. Data Protection</h2>
+          <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">5. Your Rights</h2>
+          <p>You have the right to access, correct, or delete your personal data. To exercise these rights, please contact us using the information provided in the "Contact Us" section.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">6. Contact Us</h2>
+          <p>If you have questions about this Privacy Policy, please contact us through our website.</p>
+        </section>
+      </div>
+    </section>
+  );
+
+  const renderTerms = () => (
+    <section className="mx-auto max-w-4xl px-6 py-16 md:py-20">
+      <div className="mb-8">
+        <button onClick={goHome} className="mb-4 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10">
+          ← Back to home
+        </button>
+        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Terms & Conditions</h1>
+      </div>
+      <div className="space-y-6 text-white/70">
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">1. Agreement to Terms</h2>
+          <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">2. Use License</h2>
+          <p>Permission is granted to temporarily download one copy of the materials (information or software) on WorkingBetter for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:</p>
+          <ul className="mt-2 ml-4 list-disc space-y-2">
+            <li>Modifying or copying the materials</li>
+            <li>Using the materials for any commercial purpose or for any public display</li>
+            <li>Attempting to decompile or reverse engineer any software contained on the site</li>
+            <li>Removing any copyright or other proprietary notations from the materials</li>
+            <li>Transferring the materials to another person or "mirroring" the materials on any other server</li>
+          </ul>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">3. Disclaimer</h2>
+          <p><strong>Nothing on this site constitutes investment, tax, legal, or financial advice.</strong> All materials on WorkingBetter are provided on an "as-is" basis without warranties of any kind, either express or implied. We disclaim all warranties, including but not limited to warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">4. Limitations of Liability</h2>
+          <p>In no event shall WorkingBetter or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on WorkingBetter, even if we have been notified of the possibility of such damage.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">5. Accuracy of Materials</h2>
+          <p>The materials appearing on WorkingBetter could include technical, typographical, or photographic errors. We do not warrant that any of the materials on our website are accurate, complete, or current. We may make changes to the materials contained on our website at any time without notice.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">6. Links</h2>
+          <p>We have not reviewed all of the sites linked to our website and are not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by us of the site. Use of any such linked website is at the user's own risk.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">7. Modifications</h2>
+          <p>We may revise these terms of service at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.</p>
+        </section>
+        <section>
+          <h2 className="mb-3 text-2xl font-semibold text-white">8. Governing Law</h2>
+          <p>These terms and conditions are governed by and construed in accordance with the laws of the United States, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.</p>
+        </section>
+      </div>
+    </section>
+  );
+
   return (
     <div className="min-h-screen bg-neutral-950 text-white font-[Inter]">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/80 backdrop-blur">
@@ -733,7 +846,7 @@ export default function GrowthMembershipLandingPage() {
         )}
       </header>
 
-      <main id="top">{currentPage === "cart" ? renderCart() : currentPage === "checkout" ? renderCheckout() : renderHome()}</main>
+      <main id="top">{currentPage === "cart" ? renderCart() : currentPage === "checkout" ? renderCheckout() : currentPage === "privacy" ? renderPrivacy() : currentPage === "terms" ? renderTerms() : renderHome()}</main>
 
       <footer className="border-t border-white/10 bg-black/60">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-2">
@@ -775,8 +888,8 @@ export default function GrowthMembershipLandingPage() {
               <div className="mt-4 space-y-3 text-sm text-white/55">
                 <div><button onClick={goToCart} className="hover:text-white">Cart</button></div>
                 <div><button onClick={goToCheckout} className="hover:text-white">Checkout</button></div>
-                <div><a href="/privacy-policy" className="hover:text-white">Privacy Policy</a></div>
-                <div><a href="/terms-and-conditions" className="hover:text-white">Terms & Conditions</a></div>
+                <div><button onClick={goToPrivacy} className="hover:text-white">Privacy Policy</button></div>
+                <div><button onClick={goToTerms} className="hover:text-white">Terms & Conditions</button></div>
               </div>
             </div>
           </div>
@@ -784,8 +897,8 @@ export default function GrowthMembershipLandingPage() {
         <div className="border-t border-white/10 bg-black/70 px-6 py-6 text-center text-xs text-white/60">
           <p className="mb-2">Nothing on this site constitutes investment, tax, or legal advice. Consult a qualified professional before making financial decisions.</p>
           <p>
-            <a href="/privacy-policy" className="underline hover:text-white">Privacy Policy</a> •
-            <a href="/terms-and-conditions" className="underline hover:text-white"> Terms & Conditions</a>
+            <button onClick={goToPrivacy} className="underline hover:text-white">Privacy Policy</button> •
+            <button onClick={goToTerms} className="underline hover:text-white"> Terms & Conditions</button>
           </p>
         </div>
       </footer>
