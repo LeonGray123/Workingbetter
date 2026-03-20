@@ -81,7 +81,7 @@ export default function GrowthMembershipLandingPage() {
     setCurrentPage("my-account");
     setMenuOpen(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  }; // My Account navigation
 
   const handleCheckoutInput = (field, value) => {
     setCheckoutData((prev) => ({ ...prev, [field]: value }));
