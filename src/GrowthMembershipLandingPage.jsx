@@ -775,11 +775,18 @@ export default function GrowthMembershipLandingPage() {
               <div className="mt-4 space-y-3 text-sm text-white/55">
                 <div><button onClick={goToCart} className="hover:text-white">Cart</button></div>
                 <div><button onClick={goToCheckout} className="hover:text-white">Checkout</button></div>
-                <div><a href="#" className="hover:text-white">Privacy Policy</a></div>
-                <div><a href="#" className="hover:text-white">Terms & Conditions</a></div>
+                <div><a href="/privacy-policy" className="hover:text-white">Privacy Policy</a></div>
+                <div><a href="/terms-and-conditions" className="hover:text-white">Terms & Conditions</a></div>
               </div>
             </div>
           </div>
+        </div>
+        <div className="border-t border-white/10 bg-black/70 px-6 py-6 text-center text-xs text-white/60">
+          <p className="mb-2">Nothing on this site constitutes investment, tax, or legal advice. Consult a qualified professional before making financial decisions.</p>
+          <p>
+            <a href="/privacy-policy" className="underline hover:text-white">Privacy Policy</a> •
+            <a href="/terms-and-conditions" className="underline hover:text-white"> Terms & Conditions</a>
+          </p>
         </div>
       </footer>
     </div>
