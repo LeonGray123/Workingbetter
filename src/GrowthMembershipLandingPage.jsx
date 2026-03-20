@@ -18,13 +18,6 @@ export default function GrowthMembershipLandingPage() {
   const [cartItems, setCartItems] = useState([]);
   const [checkoutData, setCheckoutData] = useState({
     email: "",
-    firstName: "",
-    lastName: "",
-    country: "United States",
-    cardName: "",
-    cardNumber: "",
-    expiry: "",
-    cvc: "",
   });
   const [couponCode, setCouponCode] = useState("");
   const [couponDiscount, setCouponDiscount] = useState(0);
@@ -659,44 +652,11 @@ export default function GrowthMembershipLandingPage() {
             </div>
           </div>
 
-          <div className="mb-8">
-            <h2 className="text-2xl font-semibold">Billing details</h2>
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              <input value={checkoutData.firstName} onChange={(e) => handleCheckoutInput("firstName", e.target.value)} placeholder="First name" className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none placeholder:text-white/35" />
-              <input value={checkoutData.lastName} onChange={(e) => handleCheckoutInput("lastName", e.target.value)} placeholder="Last name" className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none placeholder:text-white/35" />
-              <select value={checkoutData.country} onChange={(e) => handleCheckoutInput("country", e.target.value)} className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none sm:col-span-2">
-                {[
-                  "United States",
-                  "United Kingdom",
-                  "Canada",
-                  "Australia",
-                  "Germany",
-                  "France",
-                  "Netherlands",
-                  "Sweden",
-                  "Norway",
-                  "Denmark",
-                  "Spain",
-                  "Italy",
-                  "India",
-                  "Brazil",
-                  "South Africa",
-                  "Japan",
-                  "China",
-                  "Singapore",
-                  "United Arab Emirates",
-                  "Other"
-                ].map((country) => (
-                  <option key={country} value={country}>{country}</option>
-                ))}
-              </select>
-            </div>
-          </div>
+
 
           <div>
             <h2 className="text-2xl font-semibold">Payment</h2>
-            <div className="mt-4 grid gap-4">
-              <input value={checkoutData.cardName} onChange={(e) => handleCheckoutInput("cardName", e.target.value)} placeholder="Name on card" className="rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none placeholder:text-white/35" />
+            <div className="mt-4">
               <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
                 <CardElement 
                   options={{
@@ -712,6 +672,7 @@ export default function GrowthMembershipLandingPage() {
                   }}
                 />
               </div>
+              <p className="mt-3 text-sm text-white/50">No cardholder name needed for Stripe Checkout tokens.</p>
             </div>
           </div>
 
