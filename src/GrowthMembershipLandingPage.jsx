@@ -712,13 +712,45 @@ export default function GrowthMembershipLandingPage() {
 
           <div className="mt-8">
             <h2 className="text-2xl font-semibold">Coupon Code</h2>
-            <div className="mt-4 flex gap-3">
-              <input value={couponCode} onChange={(e) => setCouponCode(e.target.value)} placeholder="Enter coupon code" className="flex-1 rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none placeholder:text-white/35" />
-              <button onClick={applyCoupon} className="rounded-2xl border border-cyan-400/50 bg-cyan-400/10 px-6 py-3 font-semibold text-cyan-400 transition hover:bg-cyan-400/20">
-                Apply
-              </button>
-            </div>
-            <p className="mt-2 text-sm text-white/50">Try: WORKINGBETTER ($50 off)</p>
+            {couponDiscount === 0 ? (
+              <div className="mt-4">
+                <div className="flex gap-3">
+                  <input value={couponCode} onChange={(e) => setCouponCode(e.target.value)} placeholder="Enter coupon code" className="flex-1 rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none placeholder:text-white/35" />
+                  <button onClick={applyCoupon} className="rounded-2xl border border-cyan-400/50 bg-cyan-400/10 px-6 py-3 font-semibold text-cyan-400 transition hover:bg-cyan-400/20">
+                    Apply
+                  </button>
+                </div>
+                <p className="mt-3 text-sm text-white/50">💡 Try: <span className="font-semibold text-white">WORKINGBETTER</span> for $50 off</p>
+              </div>
+            ) : (
+              <div className="mt-4 rounded-[1.5rem] border-2 border-green-500/30 bg-gradient-to-br from-green-500/10 to-green-500/5 p-5">
+                <div className="flex items-start gap-4">
+                  <div className="mt-1 flex h-10 w-10 items-center justify-center rounded-full bg-green-500/20">
+                    <svg className="h-6 w-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="font-semibold text-green-400">Coupon applied!</h3>
+                        <p className="mt-1 text-sm text-white/70">Code: <span className="font-semibold uppercase text-white">{couponCode}</span></p>
+                      </div>
+                      <button 
+                        onClick={() => { setCouponDiscount(0); setCouponCode(""); }} 
+                        className="text-white/40 transition hover:text-white"
+                      >
+                        ✕
+                      </button>
+                    </div>
+                    <div className="mt-3 rounded-lg border border-green-500/30 bg-black/40 p-3">
+                      <p className="text-sm text-white/60">You're saving</p>
+                      <p className="text-2xl font-bold text-green-400">${couponDiscount.toFixed(2)}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -734,20 +766,29 @@ export default function GrowthMembershipLandingPage() {
             </div>
           </div>
 
-          <div className="mt-6 space-y-4 text-white/70">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+          <div className="mt-6 space-y-3 text-white/70">
+            <div className="flex items-center justify-between">
               <span>Subtotal</span>
               <span>${cartSubtotal || 150}</span>
             </div>
             {couponDiscount > 0 && (
-              <div className="flex items-center justify-between border-b border-white/10 pb-4 text-green-400">
-                <span>Discount</span>
-                <span>-${couponDiscount.toFixed(2)}</span>
+              <div className="rounded-lg border border-green-500/30 bg-gradient-to-r from-green-500/10 to-green-500/5 p-3">
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center gap-2 text-green-400">
+                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A11.010 11.010 0 001.57 10m18.86 0a13.010 13.010 0 01-3.858 9.01m-9.652 1.859c4.296 4.296 11.26 4.296 15.556 0A11.010 11.010 0 0018.43 10" clipRule="evenodd" />
+                    </svg>
+                    Discount
+                  </span>
+                  <span className="font-semibold text-green-400">-${couponDiscount.toFixed(2)}</span>
+                </div>
               </div>
             )}
-            <div className="flex items-center justify-between text-xl font-semibold text-white">
-              <span>Total</span>
-              <span>${(cartSubtotal || 150) - couponDiscount}</span>
+            <div className="border-t border-white/10 pt-3">
+              <div className="flex items-center justify-between text-xl font-semibold text-white">
+                <span>Total</span>
+                <span>${((cartSubtotal || 150) - couponDiscount).toFixed(2)}</span>
+              </div>
             </div>
           </div>
 
