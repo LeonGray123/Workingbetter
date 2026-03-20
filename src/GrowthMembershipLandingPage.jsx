@@ -726,10 +726,7 @@ export default function GrowthMembershipLandingPage() {
             </div>
           </div>
 
-          <button onClick={handleStripePayment} disabled={!stripe} className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-indigo-500 px-6 py-3.5 text-base font-semibold text-black shadow-lg shadow-indigo-500/20 disabled:opacity-50 disabled:cursor-not-allowed">
-            Complete purchase
-          </button>
-          <button onClick={handleStripeCheckoutRedirect} className="mt-4 inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/10 px-6 py-3.5 text-base font-semibold text-white transition hover:bg-white/20">
+          <button onClick={handleStripeCheckoutRedirect} className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-gradient-to-br from-cyan-400 to-indigo-500 px-6 py-3.5 text-base font-semibold text-black shadow-lg shadow-indigo-500/20">
             Pay with Stripe Checkout
           </button>
           <p className="mt-4 text-center text-sm text-white/45">Secure payment powered by Stripe</p>
