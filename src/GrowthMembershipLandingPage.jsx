@@ -16,8 +16,6 @@ export default function GrowthMembershipLandingPage() {
   const [checkoutData, setCheckoutData] = useState({
     email: "",
   });
-  const [couponCode, setCouponCode] = useState("");
-  const [couponDiscount, setCouponDiscount] = useState(0);
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const cartSubtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -71,20 +69,9 @@ export default function GrowthMembershipLandingPage() {
     setCheckoutData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const applyCoupon = () => {
-    if (couponCode.toUpperCase() === "WORKINGBETTER") {
-      setCouponDiscount(50);
-      alert("Coupon applied! $50 off");
-    } else if (couponCode === "") {
-      setCouponDiscount(0);
-      alert("Enter a coupon code");
-    } else {
-      alert("Invalid coupon code. Try: WORKINGBETTER");
-    }
-  };
+
 
   const handleStripeCheckoutRedirect = () => {
-    // replace URL with your actual Stripe Checkout URL as needed
     window.location.href = "https://buy.stripe.com/test_aFadR8gX48kK4LterNf3a00";
   };
 
@@ -627,15 +614,8 @@ export default function GrowthMembershipLandingPage() {
 
 
 
-          <div className="mt-8">
-            <h2 className="text-2xl font-semibold">Coupon Code</h2>
-            <div className="mt-4 flex gap-3">
-              <input value={couponCode} onChange={(e) => setCouponCode(e.target.value)} placeholder="Enter coupon code" className="flex-1 rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none placeholder:text-white/35" />
-              <button onClick={applyCoupon} className="rounded-2xl border border-cyan-400/50 bg-cyan-400/10 px-6 py-3 font-semibold text-cyan-400 transition hover:bg-cyan-400/20">
-                Apply
-              </button>
-            </div>
-            <p className="mt-3 text-sm text-white/50">💡 Try: <span className="font-semibold text-white">WORKINGBETTER</span> for $50 off</p>
+          <div className="mt-8 rounded-2xl border border-white/10 bg-black/30 p-4">
+            <p className="text-sm text-white/70">Use code <strong>WORKING</strong> at Stripe Checkout for $50 off.</p>
           </div>
         </div>
 
@@ -656,23 +636,10 @@ export default function GrowthMembershipLandingPage() {
               <span>Subtotal</span>
               <span>${cartSubtotal || 150}</span>
             </div>
-            {couponDiscount > 0 && (
-              <div className="rounded-lg border border-green-500/30 bg-gradient-to-r from-green-500/10 to-green-500/5 p-3">
-                <div className="flex items-center justify-between">
-                  <span className="flex items-center gap-2 text-green-400">
-                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A11.010 11.010 0 001.57 10m18.86 0a13.010 13.010 0 01-3.858 9.01m-9.652 1.859c4.296 4.296 11.26 4.296 15.556 0A11.010 11.010 0 0018.43 10" clipRule="evenodd" />
-                    </svg>
-                    Discount
-                  </span>
-                  <span className="font-semibold text-green-400">-${couponDiscount.toFixed(2)}</span>
-                </div>
-              </div>
-            )}
             <div className="border-t border-white/10 pt-3">
               <div className="flex items-center justify-between text-xl font-semibold text-white">
                 <span>Total</span>
-                <span>${((cartSubtotal || 150) - couponDiscount).toFixed(2)}</span>
+                <span>${(cartSubtotal || 150).toFixed(2)}</span>
               </div>
             </div>
           </div>
