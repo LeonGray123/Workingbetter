@@ -136,32 +136,32 @@ export default function GrowthMembershipLandingPage() {
 
   const testimonials = [
     {
-      name: "Steve",
+      name: "Sarah",
       role: "Coach & consultant",
       result: "WorkingBetter helped me simplify my offer, fix my messaging, and finally build a funnel that actually converts.",
     },
     {
-      name: "Martin",
+      name: "Michael",
       role: "Agency founder",
       result: "We doubled monthly revenue in 90 days after tightening our operations and clarifying our value proposition.",
     },
     {
-      name: "Ashley",
+      name: "Alex",
       role: "Personal brand creator",
       result: "The brand and systems work gave me structure, confidence, and an extra €5K–€10K per month.",
     },
     {
-      name: "Henrique",
+      name: "James",
       role: "Online business owner",
       result: "Within the first month I had a clearer roadmap, better offers, and far more confidence in what I was selling.",
     },
     {
-      name: "Cooper",
+      name: "David",
       role: "Service business operator",
       result: "My business became easier to manage. Better delivery, better communication, and way less chaos week to week.",
     },
     {
-      name: "Raunit",
+      name: "Lisa",
       role: "Growth marketer",
       result: "The strategy was practical and direct. We improved positioning fast and saw real movement in sales.",
     },
